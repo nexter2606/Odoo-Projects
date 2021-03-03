@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="sale_order_inherited_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button name="testing_commision" string="Testing" type="object" class="btn btn-dark"/>
+                </header>
+                <div name="button_box" position="inside">
+                    <button class="oe_stat_button" name="get_quotations" string="Oppurtunity" type="object" icon="fa-gift"/>
+                </div>
+                <xpath expr="//page[@name='customer_signature']" position="after">
+                    <page string="Commision Details:" id="commision_details_ids_sale">
+                        <field name="commision_ids">
+                            <tree editable="bottom">
+                                <field name="user_id"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+
+
+        <menuitem id="sales_commision_menu" name="Sales Commision" parent="sale.sale_menu_root" />
+        <menuitem id="sales_commision_sub_menu" name="Sales Commision" parent="sales_commision_menu" action="aspl_product_commision.aspl_product_commision_action" />
+        <menuitem name="Register Payment" id="register_payment_sub_menu1" parent="sales_commision_menu" action="aspl_product_commision.register_payment_wizard_action"/>
+
+    </data>
+</odoo>

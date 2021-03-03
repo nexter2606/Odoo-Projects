@@ -1,0 +1,8 @@
+<odoo>
+    <data>
+        <record id="note_head_ache" model="doctor.notes">
+            <field name="name">Head Ache Note</field>
+            <field name="comment">Do not watch too much TV</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_category_menu">
+        <field name="name">Employee</field>
+        <field name="description">Employee Work</field>
+    </record>
+
+    
+    <record id="group_managers" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="module_category_menu"/>
+    </record>
+
+    <record id="group_admin" model="res.groups">
+        <field name="name">ADMIN</field>
+        <field name="category_id" ref="module_category_menu"/>
+    </record>
+
+</odoo>

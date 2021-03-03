@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="commision_tree">
+      <field name="name">commision.tree.view</field>
+      <field name="model">commision.details</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="user_id"/>
+          <field name="comp_price"/>
+          <field name="amount"/>
+          <field name="status"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="commision_form_view" model="ir.ui.view">
+      <field name="name">commision.form.view</field>
+      <field name="model">commision.details</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="Commision Information">
+              <group string="Basic Fields">
+                <field name="user_id"/>
+                <field name="comp_price"/>
+                <field name="amount"/>
+                <field name="status"/>
+              </group>
+              <group string="Extra Fields">
+                <field name="product_id"/>
+                <field name="sale_id"/>
+                <field name="invoice_id"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+
+    <record model="ir.actions.act_window" id="aspl_product_commision_action">
+      <field name="name">aspl_product_commision window</field>
+      <field name="res_model">commision.details</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+
+    <menuitem name="aspl_product_commision" id="commision_root"/>
+
+
+    <menuitem name="Commision Details" id="commision_menu1" parent="commision_root" action="aspl_product_commision_action"/>
+
+
+
+  </data>
+</odoo>

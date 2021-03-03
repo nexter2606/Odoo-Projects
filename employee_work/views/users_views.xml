@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="users_form">
+      <field name="name">res.users</field>
+      <field name="model">res.users</field>
+      <field name="inherit_id" ref="base.view_users_form"/>
+      <field name="arch" type="xml">
+      <xpath expr="//form/div" position="after">
+        <header>
+          <button string="Show Records" type="object" name="show_records" class="btn btn-info" />
+        </header>
+      </xpath>
+        <xpath expr="//page[@name='references']" position="after">
+          <page string="Juniors" name="juniors">
+            <group>
+              <field name="user_ids" />
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="res_users_action">
+      <field name="name">employee_work window</field>
+      <field name="res_model">res.users</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('base.view_users_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('base.view_users_form')})
+                ]"/>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Employee Work" id="employee_work_menu_root"/>
+    <menuitem name="Users" id="employee_work.menu_1_list" parent="employee_work_menu_root" action="res_users_action"/>
+
+
+  </data>
+</odoo>

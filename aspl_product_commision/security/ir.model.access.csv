@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_commision_details,access_commision_details,model_commision_details,base.group_user,1,1,1,1
+access_register_payment,access_register_payment,model_register_payment,base.group_user,1,1,1,1 
+access_my_order_line,access_my_order_line,model_my_order_line,base.group_user,1,1,1,1
+access_project_wizard,access_project_wizard,model_project_wizard,base.group_user,1,1,1,1 
+access_save_report_wizard,access_save_report_wizard,model_save_report_wizard,base.group_user,1,1,1,1 
+

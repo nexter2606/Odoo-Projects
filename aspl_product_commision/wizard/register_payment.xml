@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+
+        <!-- <record model="ir.ui.view" id="register_payment_tree">
+            <field name="name">register.payment.tree.view</field>
+            <field name="model">register.payment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </tree>
+            </field>
+        </record> -->
+
+        <record id="register_payment_form1" model="ir.ui.view">
+            <field name="name">register.payment.form.view</field>
+            <field name="model">register.payment</field>
+            <field name="arch" type="xml">
+                <form string="Register Payment">
+                    <sheet>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Register Payment:" id="register_payment_page1">
+                                    <field name="user_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="login"/>
+                                            <field name="lang"/>
+                                            <field name="login_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="get_common_records" string="Get Records" type="object" class="btn btn-info" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="register_payment_wizard_action">
+            <field name="name">Register Payments</field>
+            <field name="res_model">register.payment</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem name="Register Payment" id="register_payment_menu2" parent="commision_root" action="register_payment_wizard_action"/>
+
+
+
+    </data>
+</odoo>

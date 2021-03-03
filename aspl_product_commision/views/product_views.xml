@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record id="product_inherited_form" model="ir.ui.view">
+            <field name="name">product.product.form</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <header>
+                </header>
+                <xpath expr="//page[@name='purchase']" position="after">
+                    <page string="Commision Details:" id="commision_details_ids_product">
+                        <field name="commision_ids">
+                            <tree editable="bottom">
+                                <field name="user_id"/>
+                                <field name="comp_price"/>
+                                <field name="amount"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

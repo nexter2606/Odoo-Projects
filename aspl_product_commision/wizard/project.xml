@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+
+
+        <record id="project_wizard_form1" model="ir.ui.view">
+            <field name="name">project.wizard.form.view</field>
+            <field name="model">project.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Project Info.">
+                    <sheet>
+                        <group>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Users:" id="user_details">
+                                    <field name="user_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="login"/>
+                                            <field name="lang"/>
+                                            <field name="login_date"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page string="Projects:" id="prj_details">
+                                    <field name="project_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="label_tasks"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <footer>
+                    <button name="get_pdf_report" string="PDF Report" type="object" class="btn btn-dark" />
+                    <button name="get_excel_report" string="Excel Report" type="object" class="btn btn-info" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record model="ir.actions.act_window" id="project_work_wizard_action">
+            <field name="name">Projects</field>
+            <field name="res_model">project.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Wizard" id="my_custom_menu" parent="project.menu_main_pm" sequence="6" action="project_work_wizard_action" />
+    </data>
+</odoo>
