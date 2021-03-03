@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <record id="customer_map_view" model="ir.ui.view">
+        <field name="name">customer.map.view</field>
+        <field name="model">res.partner</field>
+        <field name="arch" type="xml">
+            <map latitude="partner_latitude" longitude="partner_longitude">
+                <field name="name"/>
+            </map>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="first_map_view">
+        <field name="name">Map</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">map</field>
+        <field name="view_id" ref="customer_map_view"/>
+    </record>
+
+    <menuitem id="map_menu" name="Map Menu" parent="clinic_management_root_menu" action="first_map_view"/>
+</odoo>

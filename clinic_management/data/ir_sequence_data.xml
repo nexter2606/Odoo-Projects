@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="seq_appointment" model="ir.sequence">
+            <field name="name">Appointment</field>
+            <field name="code">patient_appointment</field>
+            <field name="prefix">APT/%(year)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_visit" model="ir.sequence">
+            <field name="name">Visit</field>
+            <field name="code">patient_visit</field>
+            <field name="prefix">VST/%(year)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+        </record>
+
+        <record id="seq_invoice" model="ir.sequence">
+            <field name="name">Invoice</field>
+            <field name="code">patient_invoice</field>
+            <field name="prefix">INV/%(year)s/</field>
+            <field name="padding">3</field>
+            <field name="number_increment">1</field>
+        </record>
+        
+        
+
+    </data>
+</odoo>

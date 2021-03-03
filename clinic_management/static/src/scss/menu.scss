@@ -1,0 +1,49 @@
+// .content {
+//   font-weight: normal;
+//   background-color: aqua;
+//   width: 500px;
+//   height: 500px;
+//   background-position: 50% 50%;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+// }
+// .clinic_data{
+
+// }
+
+.header_class {
+  background-color: aquamarine;
+}
+.collapse navbar-collapse a {
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+}
+
+.collapse navbar-collapse a:hover {
+  background-color: #ccc;
+}
+
+.collapse navbar-collapse a.active {
+  background-color: #4caf50;
+  color: white;
+
+}
+
+.visit_sample{
+  text-align:center
+}
+
+.record_visit_div{
+  text-align:center
+}
+.h1{
+  text-align: center;
+}
+
+.sample_visit_row1{
+  background-color:pink;
+
+}

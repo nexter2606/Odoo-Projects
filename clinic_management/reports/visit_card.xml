@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+    <template id="report_visit">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;"> Patient Record </h1>
+                            <br/>
+                            <tr style="background-color:#28B463; font-weight: bold">
+                                <th >Name</th>
+                                <th >Mobile</th>
+                                <th >Email</th>
+                                <th >City</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="docs">
+                                    <td>
+                                        <t t-esc="docs.patient_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.patient_id.mobile"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.patient_id.email"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.patient_id.city"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                    <br>
+                    </br>
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;"> Medicine Record </h1>
+                            <br></br>
+                            <tr style="background-color:#7592C6; font-weight: bold">
+                                <th >Medicine</th>
+                                <th >Quantity</th>
+                                <th >Price</th>
+                                <th >Description</th>
+                                <th >Total Price</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="visit_line_ids" t-as="visit1">
+                                    <td>
+                                        <t t-esc="visit1.medicine_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="visit1.qty"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="visit1.price"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="visit1.description"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="visit1.total_price"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                    <h4 style = "text-align:right;color:##547A64;"> Total Amount
+                        <t t-esc="docs.final_price"/>
+                    </h4>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

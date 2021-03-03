@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="visit_line_tree">
+            <field name="name">visit.line.tree</field>
+            <field name="model">aspl.visit.line</field>
+            <field name="arch" type="xml">
+                <tree string = "Visit Line Information" decoration-danger="price > 100 " decoration-info="price == 100 ">
+                    <field name="description" />
+                    <field name="price" />
+                    <field name="qty" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="visit_line_form">
+            <field name="name">visit.line.form</field>
+            <field name="model">aspl.visit.line</field>
+            <field name="arch" type="xml">
+                <form string = "Visit Line Information">
+                    <sheet>
+                        <group col = "4">
+                            <field name="description" />
+                            <field name="medicine_id" />
+                            <field name="price" />
+                            <field name="qty" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="visit_line_action">
+            <field name="name">Visit Line</field>
+            <field name="res_model">aspl.visit.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Visit Line" id="visit_line_menu" parent="visit_menu" action="visit_line_action"/>
+
+
+    </data>
+</odoo>

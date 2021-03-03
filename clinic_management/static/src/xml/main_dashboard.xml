@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="clinic_management.DashboardMain">
+        <div class="clinic_data"></div>
+    </t>
+    <t t-name="clinic_management.header">
+        <div class="header mt-3">
+            <h1 class="header-title" t-esc="widget.greeting()" />
+            <br></br>
+        </div>
+    </t>
+
+    <t t-name="clinic_management.content">
+        <div class="content">
+            <head>
+            </head>
+            <body>
+                <nav class="navbar  navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">
+                        <img src="/clinic_management/static/src/img/website.png" width="30" height="30" class="d-inline-block align-top" alt="clinic"/>
+                    </a>
+                    <a class="navbar-brand" href="#">Clinic Management</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Patient</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Appointment</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <br>
+                </br>
+                <h1 class="h1" id="first_header">
+                    <t t-set="patient" t-value="widget.data"/>
+                    Patient Records
+                </h1>
+                <table class="table table-sm table-striped table-borderless table-hover">
+                    <thead class="header_class">
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile</th>
+                        </tr>
+                        <tbody>
+                            <!-- <a href="#" t-att-patient-id="patient.patient_id" t-esc="patient.patient_id"></a> -->
+                            <tr t-foreach="patient" t-as="patient_var">
+                                <td class="patient_id_class">
+                                    <h2>
+                                        <a t-esc="patient_var['patient_id']" t-att-p-id="patient_var['patient_id']"></a>
+                                    </h2>
+                                </td>
+                                <!-- <td>
+                                    <t t-esc="patient_var['patient_id']"/>
+                                </td> -->
+                                <td >
+                                    <t t-esc="patient_var['patient']" />
+                                </td>
+                                <td>
+                                    <t t-esc="patient_var['email']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="patient_var['mobile']"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+            </body>
+        </div>
+    </t>
+
+    <t t-name="clinic_management.visit_data_sample">
+        <div class="visit_sample">
+            <br></br>
+            <br></br>
+            <t t-call="clinic_management.visit_datas">
+            </t>
+        </div>
+    </t>
+    <t t-name="clinic_management.record_visit">
+        <div class="record_visit_div">
+            <t t-set="p" t-value="widget.visit_data"/>
+            <h1>Visit Records</h1>
+
+            <table class="table table-sm table-striped table-borderless table-hover">
+                <thead class="record_visit">
+                    <tr class="sample_visit_row1">
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Reason</th>
+                    </tr>
+                    <tbody>
+                        <tr t-foreach="p" t-as="docs1">
+                            <td>
+                                <t t-esc="docs1['patient']"/>
+                            </td>
+                            <td>
+                                <t t-esc="docs1['doctor']"/>
+                            </td>
+                            <td>
+                                <t t-esc="docs1['reason']"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </t>
+</templates>

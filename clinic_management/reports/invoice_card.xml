@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+    <template id="report_invoice" name = "Invoice">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;"> Patient Invoice Record </h1>
+                            <br/>
+                            <tr style="background-color:#28B463; font-weight: bold">
+                                <th >Name</th>
+                                <th >Invoice Date</th>
+                                <th >Payment Date</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="docs">
+                                    <td>
+                                        <t t-esc="docs.patient_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.invoice_date"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.payment_date"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                    <br></br>
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;">Invoice Medicine Record </h1>
+                            <br/>
+                            <tr style="background-color:#00FFFF; font-weight: bold">
+                                <th >Medicine</th>
+                                <th >Quantity</th>
+                                <th >Price</th>
+                                <th >Description</th>
+                                <th >Total Price</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="invoice_line_ids" t-as="invoice1">
+                                    <td>
+                                        <t t-esc="invoice1.medicine_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice1.qty"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice1.price"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice1.description"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="invoice1.total_price"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                    <h4 style = "text-align:right;color:#0B1B12;"> Total Amount
+                        <t t-esc="docs.total_amount"/>
+                    </h4>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

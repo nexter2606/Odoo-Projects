@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="medicine_tree">
+            <field name="name">aspl.medicine.tree</field>
+            <field name="model">aspl.medicine</field>
+            <field name="arch" type="xml">
+                <tree string = "Medicine Information">
+                    <field name="name"  />
+                    <field name="description" />
+                    <field name="price" />
+                    <field name="code" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="medicine_form">
+            <field name="name">aspl.medicine.form</field>
+            <field name="model">aspl.medicine</field>
+            <field name="arch" type="xml">
+                <form string = "Medicine Information">
+                    <sheet>
+                        <h1 style="color:DarkBlue">
+                            <group>
+                                <field name="name"  placeholder="Name" />
+                            </group>
+                        </h1>
+                        <group col = "4">
+                            <field name="description" />
+                            <field name="price" />
+                            <field name="code" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="medicine_action">
+            <field name="name">medicine</field>
+            <field name="res_model">aspl.medicine</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Medicine" id="medicine_menu" parent="clinic_management_root_menu" action="medicine_action"/>
+
+    </data>
+</odoo>

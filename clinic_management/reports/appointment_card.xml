@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="report_appointment">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;">Appointment Record </h1>
+                            <br/>
+                            <tr style="background-color:#28B463; font-weight: bold">
+                                <th > Patient Name</th>
+                                <th >Doctor Name</th>
+                                <th >Reason</th>
+                                <th >Arrival Time</th>
+                                <th >state</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="appointment" t-as="docs">
+                                    <td>
+                                        <t t-esc="docs.patient_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.doctor_id.name"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.reason"/>
+                                    </td>
+
+                                    <td>
+                                        <t t-esc="docs.arrival_time"/>
+                                    </td>
+                                    <td>
+                                        <t t-esc="docs.state"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="timesheet_tree">
+            <field name="name">user.timesheet.tree</field>
+            <field name="model">user.timesheet</field>
+            <field name="arch" type="xml">
+                <tree string = "User Timesheet">
+                    <field name="user_id" />
+                    <field name="project_id" />
+                    <field name="task_id" />
+                    <field name="total_time" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="timesheet_form">
+            <field name="name">user.timesheet.form</field>
+            <field name="model">user.timesheet</field>
+            <field name="arch" type="xml">
+                <form string = "User Timesheet">
+                    <sheet>
+                        <group col = "4">
+                            <field name="user_id" />
+                            <field name="project_id" />
+                            <field name="task_id" />
+                            <field name="total_time" />
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Timesheet Line:" id="timesheet_details">
+                                    <field name="timesheet_line_ids">
+                                        <tree editable="bottom">
+                                            <field name="date" />
+                                            <field name="description" />
+                                            <field name="duration" />
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="timesheet_action">
+            <field name="name">Timesheet</field>
+            <field name="res_model">user.timesheet</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Project" id="project_menu" parent="clinic_management_root_menu" />
+        <menuitem name="Timesheet" id="timesheet_sub_menu" parent="project_menu" action="timesheet_action"/>
+
+
+    </data>
+</odoo>

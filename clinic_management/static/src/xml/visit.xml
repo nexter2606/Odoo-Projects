@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="clinic_management.visit_data">
+        <div class="visit"></div>
+    </t>
+    <t t-name="clinic_management.visit_datas">
+        <div class="visit_datas">
+            <head>
+                <h2>
+        Visit Records
+        
+                </h2>
+            </head>
+            <body>
+            
+                <h1>
+                    <t t-set="visit" t-value="widget.data" />
+                    
+                </h1>
+                <!-- <t t-esc="visit"/> -->
+
+                <table class="table table-sm table-striped table-borderless table-hover">
+                    <thead class="visit_header_class">
+                        <tr>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tbody>
+                            <tr t-foreach="visit" t-as="docs2">
+                                <td>
+                                    <t t-esc="docs2['patient']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="docs2['doctor']"/>
+                                </td>
+                                <td>
+                                    <t t-esc="docs2['reason']"/>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+            </body>
+        </div>
+    </t>
+
+
+</templates>

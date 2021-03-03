@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="mass_visit_tree">
+            <field name="name">mass.visit.tree</field>
+            <field name="model">mass.visit</field>
+            <field name="arch" type="xml">
+                <tree string = "Mass Visit Information">
+                    <field name="doctor_id" />
+                    <field name="patient_ids" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="mass_visits_form">
+            <field name="name">mass.visit.form</field>
+            <field name="model">mass.visit</field>
+            <field name="arch" type="xml">
+                <form string = "Doctor Team Information">
+                    <header>
+                        <button name="create_mass_visit" string="Create Mass Visit" type="object" class="btn btn-info"></button>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="doctor_id" />
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Patient Details:" id="patients_mass_visit_details_ids">
+                                    <field name="patient_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="mobile"/>
+                                            <field name="email"/>
+                                            <field name="country_id"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="mass_visit_action">
+            <field name="name">Mass Visit</field>
+            <field name="res_model">mass.visit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Mass Visit" id="mass_visit_menu" parent="visit_menu" action="mass_visit_action"/>
+
+    </data>
+</odoo>

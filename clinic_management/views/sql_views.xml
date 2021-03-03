@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="sql_view_tree">
+            <field name="name">sql.view.tree</field>
+            <field name="model">aspl.sql.view.demo</field>
+            <field name="arch" type="xml">
+                <tree string = "Sql View" decoration-success="patient_id!='False'">
+                    <field name="patient_id" />
+                    <field name="doctor_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="sql_view_form">
+            <field name="name">sql.view.form</field>
+            <field name="model">aspl.sql.view.demo</field>
+            <field name="arch" type="xml">
+                <form string = "Sql View Information">
+                    <header>
+                    </header>
+                    <sheet>
+                        <group col = "4">
+                            <field name="patient_id" />
+                            <field name="doctor_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="sql_view_action">
+            <field name="name">Sql View</field>
+            <field name="res_model">aspl.sql.view.demo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="SQL View" id="sql_view_menu" parent="clinic_management_root_menu" action="sql_view_action" />
+    </data>
+</odoo>

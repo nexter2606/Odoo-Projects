@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="visit_tree">
+            <field name="name">visit.tree</field>
+            <field name="model">aspl.visit</field>
+            <field name="arch" type="xml">
+                <tree string = "Visit Information" decoration-info="state=='waiting'" decoration-danger="state=='left_without_seen'" decoration-success="state=='complete'" decoration-warning="state=='cancel'">
+                    <field name="patient_id" />
+                    <field name="doctor_id" />
+                    <field name="reason" />
+                    <field name="allergy" />
+                    <field name="state" widget="badge" decoration-success="state == 'complete'" decoration-info="state == 'draft'" decoration-danger="state=='left_without_seen'" decoration-warning="state=='cancel'" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="visit_form">
+            <field name="name">visit.form</field>
+            <field name="model">aspl.visit</field>
+            <field name="arch" type="xml">
+                <form string = "Visit Information">
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"></field>
+                        <button name="to_being_seen" string = "Being Seen" type="object" class = "btn btn-dark" attrs="{'invisible': ['|','|','|',('state', '=', 'being_seen'),('state', '=', 'complete'),('state', '=', 'cancel'),('state', '=', 'left_without_seen') ]}"></button>
+                        <button name="to_left_without_seen" string = "Left Without Seen" type="object" class = "btn btn-warning" attrs="{'invisible': ['|','|','|',('state', '=', 'being_seen'),('state', '=', 'complete') ,('state', '=', 'cancel'),('state', '=', 'left_without_seen')   ]}"></button>
+                        <button name="to_complete" string = "Complete" type="object" class = "btn btn-info" attrs="{'invisible': ['|','|','|',('state', '=', 'complete'),('state', '=', 'cancel'),('state', '=', 'waiting') ,('state', '=', 'left_without_seen')  ]}"></button>
+                        <button name="to_cancel" string = "Cancel" type="object" class = "btn btn-dark" attrs="{'invisible': ['|',('state', '=', 'cancel'),('state', '=', 'left_without_seen')]}"></button>
+                        <button name="create_customer_invoice" string = "Create Customer Invoice" type="object"  class = "btn btn-warning" attrs="{'invisible': [('state', '!=', 'complete')]}"></button>
+                        <button name="save_invoice" string = "Generate  Invoice" type="object"  class = "btn btn-info"></button>
+                        <button name="get_attachment_pdf" string = "Attachment PDF" type="object"  class = "btn btn-warning"></button>
+                        <!-- paperclip button like SO (not working) -->
+                        <button type="button" name="show_attachments" class="btn btn-link o_ChatterTopbar_button o_ChatterTopbar_buttonAttachments">
+                            <i class="fa fa-paperclip"></i>
+                            <span class="o_ChatterTopbar_buttonCount o_ChatterTopbar_buttonAttachmentsCount">0</span>
+                        </button>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" readonly = "1" />
+                        </h1>
+                        <group col = "4">
+                            <field name="patient_id" />
+                            <field name="reason" />
+                            <field name="diagnosis" />
+                            <field name="allergy" />
+                            <field name="doctor_id" />
+                            <field name="doctor_team_id" />
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Visit Details:" id="visit_details_ids">
+                                    <field name="visit_line_ids">
+                                        <tree editable="bottom">
+                                            <field name="medicine_id"/>
+                                            <field name="qty"/>
+                                            <field name="price"/>
+                                            <field name="description"/>
+                                            <field name="total_price"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                        <footer class="oe_right">
+                            <group >
+                                <h1 style="color:##547A64">
+                                Final Price:
+                                    <field name="final_price" widget = "monetary" />
+                                </h1>
+                            </group>
+                        </footer>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="visit_action">
+            <field name="name">Visit</field>
+            <field name="res_model">aspl.visit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Visit" id="visit_menu" parent="clinic_management_root_menu"/>
+        <menuitem name="Visit" id="visit_sub_menu" parent="visit_menu" action="visit_action" sequence="1"/>
+
+    </data>
+</odoo>

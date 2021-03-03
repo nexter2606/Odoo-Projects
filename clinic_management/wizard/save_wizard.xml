@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="save_report_wizard_form" model="ir.ui.view">
+        <field name="name">save.report.data.form</field>
+        <field name="model">save.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Save Data Wizard">
+                <sheet>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field name="file" filename="name" readonly="1"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" string="Cancel" class="btn btn-dark" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo>

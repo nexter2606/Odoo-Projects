@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+        <!-- for aspl.patient  -->
+        <record id="patient_email_template" model = "mail.template">
+            <field name="name">Patient Report: Send by email</field>
+            <field name="model_id" ref="clinic_management.model_aspl_patient"/>
+            <field name="email_from">${(object.user_id.email_formatted) |safe}</field>
+            <field name="email_to">${object.email}</field>
+            <field name="subject">Patient Report (Ref ${object.name or 'n/a'})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${object.name}
+                        <br></br>
+        Here is your Patient Report Card:
+                        <br></br>
+        Mobile:${object.mobile}
+                        <br></br>
+        For any enquiries do call on 1800-001-007
+                        <br></br>
+                    Have  a good day!!
+                        <br></br>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <!-- for project.task -->
+        <record id="project_email_template" model = "mail.template">
+            <field name="name">Project Employee : Send by email</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="email_from">${(object.user_id.email_formatted) |safe}</field>
+            <field name="email_to">${ctx['email_to']}</field>
+            <field name="subject">Regarding Overtime Work</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${ctx['emp_name']}
+                        <br></br>
+        You worked ${ctx['extra_working_time']}  Exra  Hours Today
+                        <br></br>
+                    Take Care
+                        <br></br>
+                    Have  a good day!!
+                        <br></br>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <!-- for project.task sending email to followers in chatter -->
+        <record id="follower_project_email_template" model = "mail.template">
+            <field name="name">Project Followers : Send by email</field>
+            <field name="model_id" ref="project.model_project_task"/>
+            <field name="email_from">${(object.user_id.email_formatted) |safe}</field>
+            <field name="email_to">${ctx['email_to']}</field>
+            <field name="email_cc">${ctx['email_cc']}</field>
+            <field name="subject">Regarding Work Stuff</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+        Dear ${ctx['email_to']} 
+                        <br></br>
+        You are a Hardworking Person!                        <br></br>
+                    Take Care
+                        <br></br>
+                    Have  a good day!!
+                        <br></br>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

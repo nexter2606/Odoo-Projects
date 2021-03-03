@@ -1,0 +1,156 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="appointment_tree">
+            <field name="name">appointment.tree</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <tree string = "Appointment Information" decoration-success="state=='arrived'" decoration-info="state=='booked'" decoration-danger="state=='cancel'">
+                    <field name="name"/>
+                    <field name="patient_id" />
+                    <field name="doctor_id" />
+                    <field name="reason" />
+                    <field name="state" widget="badge" decoration-success="state == 'arrived'" decoration-info="state == 'booked'" decoration-danger="state=='cancel'" />
+                    <field name="arrival_time" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="appointment_form">
+            <field name="name">doctor.form</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <form string = "Appointment Information">
+                    <header>
+                        <field name="state" widget="statusbar" clickable="True"></field>
+                        <button name="to_arrived" string = "Arrived" type="object" class = "btn btn-dark"></button>
+                        <button name="to_cancel" string = "Cancel" type="object" class = "btn btn-info"></button>
+                        <button name="create_visit" string = "Create Visit" type="object" class = "btn btn-warning"></button>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" readonly = "1" />
+                        </h1>
+                        <group col = "4">
+                            <field name="patient_id" />
+                            <field name="reason" />
+                            <field name="arrival_time" />
+                            <field name="doctor_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- appointment search view -->
+        <record id="appointment_search_view" model="ir.ui.view">
+            <field name="name">appointment.search.view</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <search string="Appointment Information">
+                    <field name="patient_id" />
+                    <field name="reason" />
+                    <field name="arrival_time" />
+                    <field name="doctor_id" />
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_pid" string="Patient" domain="[]" context="{'group_by':'patient_id'}" />
+                        <filter name="groupby_did" context="{'group_by': 'doctor_id'}" string="Doctor" />
+                        <filter name="groupby_reason" context="{'group_by': 'reason'}" string="Reason"/>
+                    </group>
+                    <filter string="Arrivl Time" name="fil_by_arrival_time" domain="[('arrival_time','&lt;=', time.strftime('%%Y-12-31'))]" />
+                </search>
+            </field>
+        </record>
+
+        <!--appointment calender view  -->
+        <record id="appointment_view_calendar" model="ir.ui.view">
+            <field name="name">appointment.calendar</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <calendar string="Patient Appointment Calender" date_start="arrival_time" color="patient_id" event_open_popup="true" mode="month" quick_add="False">
+                    <field name="doctor_id"/>
+                    <field name="patient_id"/>
+                    <field name="reason"/>
+                </calendar>
+            </field>
+        </record>
+
+        <!-- Appointment KANBAN VIEW -->
+        <record id="appointment_kanban" model="ir.ui.view">
+            <field name="name">aspl.appointment.kanban</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
+                    <field name="reason"/>
+                    <field name="arrival_time"/>
+                    <field name="state"/>
+                    <field name="progress_rate"/>
+                    <field name="maximum_rate"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click" >
+                                <field name="progress_rate" widget="gauge" style="width:120px;height:90px;cursor:pointer;" options="{'max_field': 'maximum_rate'}"> 
+                                   Progress                                
+                                </field>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <h2>
+                                            <field name="reason" />
+                                        </h2>
+                                    </strong>
+                                    <div class="o_kanban_tags_section"/>
+                                    <ul>
+                                        <li> Patient Id: <field name="patient_id" />
+                                        </li>
+                                        <li> Doctor Id:<field name="doctor_id" />
+                                        </li>
+                                        <li> Arrival Time :<field name="arrival_time" />
+                                        </li>
+                                        <li> State :<field name="state" />
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Appointment Pivot view -->
+        <record id="appointment_view_pivot" model="ir.ui.view">
+            <field name="name">appointment.pivot</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <pivot string="APpointment Pivot">
+                    <field name="patient_id" type="row"/>
+                    <field name="arrival_time" interval="month" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="appointment_graph" model="ir.ui.view">
+            <field name="name">aspl.appointment.graph</field>
+            <field name="model">aspl.appointment</field>
+            <field name="arch" type="xml">
+                <graph string="Appointment Graph" type="pie">
+                    <field name="patient_id"/>
+                    <field name="state" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="appointment_action">
+            <field name="name">Appointment</field>
+            <field name="res_model">aspl.appointment</field>
+            <field name="view_mode">tree,form,kanban,calendar,pivot,graph</field>
+        </record>
+
+        <menuitem name="Appointment" id="appointment_menu" parent="clinic_management_root_menu" sequence="4"/>
+        <menuitem name="Appointment" id="appointment_sub_menu" parent="appointment_menu" action="appointment_action" sequence="1"/>
+
+
+    </data>
+</odoo>

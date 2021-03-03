@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="appointment_report_xlx_wizard_form" model="ir.ui.view">
+        <field name="name">appointment.report.wizard.view</field>
+        <field name="model">appointment.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Appointment Report Wizard">
+                <group>
+                    <!-- <field name="patient_ids" /> -->
+                    <!-- <field name="doctor_ids" /> -->
+                    <notebook>
+                        <page string="Patient Details:" id="patient_details_ids">
+                            <field name="patient_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="mobile"/>
+                                    <field name="email"/>
+                                    <field name="country_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Doctor Details:" id="doctor_details_ids">
+                            <field name="doctor_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="mobile"/>
+                                    <field name="email"/>
+                                    <field name="country_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </group>
+                <group>
+                    <field name="start_date" />
+                    <field name="end_date" />
+                    <field name="state" />
+                </group>
+                <footer>
+                    <button name = "get_report" string = "Create xls Report" type = "object" class = "btn btn-dark" />
+                    <button name = "get_pdf_report" string = "Create Pdf Report" type = "object" class = "btn btn-info" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="appointment_report_xlx_views_wizard_action" model="ir.actions.act_window">
+        <field name="name">Appointment xls report Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">appointment.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="appointment_report_xlx_wizard_form" />
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Appointment Report" id="app_wiz_report_menu" parent="appointment_menu" action="appointment_report_xlx_views_wizard_action"/>
+
+
+
+</odoo>

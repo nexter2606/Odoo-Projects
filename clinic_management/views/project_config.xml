@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form_project_task_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr_timesheet.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='section_leaves']" position="inside">
+                <field name="percentage"/>
+                <label for ="percentage" string="Percentage"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>        

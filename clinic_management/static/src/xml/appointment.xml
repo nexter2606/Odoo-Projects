@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="clinic_management.MainAppointment">
+        <div class="appointment_data"></div>
+    </t>
+    <t t-name="clinic_management.appointment_header">
+        <div class="appointment_header_div mx-2">
+        <h1  t-esc="widget.AppointmentGreeting()" />
+        </div>
+        <br></br>
+    </t>
+
+    <t t-name="clinic_management.appointment_content">
+        <div class="content">
+            <h1 class="main_header">Appointment Records</h1>
+            <t t-set="appointment_obj" t-value="widget.app_data"/>
+            <!-- <a href="#" t-esc="appointment_obj[0]['patient_name']" t-att-patient-id="appointment_obj[2]['patient_name']"></a> -->
+            <table class="table table-sm table-striped table-borderless table-hover">
+                <thead class="table_header">
+                    <tr class="table_row1">
+                        <th>Patient ID</th>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Reason</th>
+                        <th>Arrival TIme</th>
+                    </tr>
+                    <tbody class="table_body">
+                        <tr t-foreach="appointment_obj" t-as="app">
+                            <td class="patient_id" id="pid">
+                                <a t-esc="app['patient_id']" t-att-patient-id="app['patient_id']"></a>
+                            </td>
+                            <td class="patient_name">
+                                <a t-esc="app['patient_name']" t-att-patient-record-id="app['patient_record_id']"></a>
+                            </td>
+                            <td>
+                                <t t-esc="app['doctor_name']"/>
+                            </td>
+                            <td>
+                                <t t-esc="app['reason']"/>
+                            </td>
+                            <td>
+                                <t t-esc="app['arrival_time']"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        </div>
+    </t>
+
+
+
+</templates>    

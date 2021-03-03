@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  
+
+  <data>
+    <!-- <template id="assets_backend" name="my_module assets" inherit_id="web.assets_backend">
+      <xpath expr="." position="inside">
+        <script type="text/javascript" src="/clinic_management/static/src/js/sample.js"></script>
+      </xpath>
+    </template> -->
+
+    <record id="customer_map_view" model="ir.ui.view">
+      <field name="name">customer.map.view</field>
+      <field name="model">aspl.appointment</field>
+      <field name="arch" type="xml">
+        <map>
+          <field name="reason"/>
+        </map>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="first_map_action">
+      <field name="name">Map</field>
+      <field name="res_model">aspl.appointment</field>
+      <field name="view_mode">map</field>
+      <field name="view_id" ref="customer_map_view"/>
+    </record>
+
+    <!-- <menuitem id="map_menu" name="JS Menu" parent="clinic_management_root_menu" action="first_map_action"/> -->
+  </data>
+
+
+</odoo> 
+
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <template id="assets_backend" inherit_id="web.assets_backend">
+            <xpath expr="//script[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/clinic_management/static/src/scss/menu.scss" />
+                <script type="text/javascript" src="/clinic_management/static/src/js/sample.js" />
+            </xpath>
+        </template>
+
+        <template id="assets_demo_backend" inherit_id="web.assets_common">
+            <xpath expr="//script[last()]" position="after">
+                <script type="text/javascript" src="/clinic_management/static/src/js/demo.js" />
+            </xpath>
+        </template>
+
+        <template id="assets_view_backend" inherit_id="web.assets_backend">
+            <xpath expr="//script[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/clinic_management/static/src/scss/visit.scss" />
+                <script type="text/javascript" src="/clinic_management/static/src/js/visit.js" />
+            </xpath>
+        </template>
+
+        <template id="assets_appointment_backend" inherit_id="web.assets_backend">
+            <xpath expr="//script[last()]" position="after">
+                <link rel="stylesheet" type="text/scss" href="/clinic_management/static/src/scss/appointment.scss" />
+                <script type="text/javascript" src="/clinic_management/static/src/js/appointment.js" />
+            </xpath>
+        </template>
+
+        <template id="_assets_primary_variables" name="My SCSS variables" inherit_id="website._assets_primary_variables">
+    <xpath expr="link[last()]" position="after">
+        <link rel="stylesheet" type="text/scss" href="/clinic_management/static/src/scss/style.scss"/>
+    </xpath>
+</template>
+
+
+
+
+        <!-- <record id="demo_view" model="ir.ui.view">
+            <field name="name">demo</field>
+            <field name="model">aspl.demo</field>
+            <field name="arch" type="xml">
+                <map>
+                    <field name="name"/>
+                </map>
+            </field>
+        </record> -->
+
+        <record id="demo_action" model="ir.actions.client">
+            <field name="name">Dashboard</field>
+            <field name="tag">clinic_dashboard</field>
+        </record>
+
+
+
+        <!-- not working -->
+        <record id="demo_backend_action" model="ir.actions.client">
+            <field name="name">Demo</field>
+            <field name="tag">petstore.homepage</field>
+        </record>
+
+        <record id="visit_backend_action" model="ir.actions.client">
+            <field name="name">Visit</field>
+            <field name="tag">visit</field>
+        </record>
+
+        <record id="appointment_backend_action1" model="ir.actions.client">
+            <field name="name">Appointment</field>
+            <field name="tag">main_appointment</field>
+        </record>
+
+
+
+
+        <menuitem id="js_root_menu" name="JS Work" parent="clinic_management_root_menu" />
+        <menuitem id="demo_menu" name="Sample" parent="js_root_menu" action="demo_action"/>
+        
+        <!-- <menuitem id="demo_backend_menu" name="Demo" parent="js_root_menu" action="demo_backend_action"/> -->
+        <menuitem id="visit_backend_menu" name="Visit" parent="js_root_menu" action="visit_backend_action"/>
+        <menuitem id="appointment1_backend_menu" name="Appointment" parent="js_root_menu" action="appointment_backend_action1"/>
+        
+        
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="invoice_line_tree">
+            <field name="name">invoice.line.tree</field>
+            <field name="model">aspl.invoice.line</field>
+            <field name="arch" type="xml">
+                <tree string = "Invoice Line Information">
+                    <field name="invoice_id" />
+                    <field name="medicine_id" />
+                    <field name="description" />
+                    <field name="price" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="invoice_line_form">
+            <field name="name">invoice.line.form</field>
+            <field name="model">aspl.invoice.line</field>
+            <field name="arch" type="xml">
+                <form string = "Invoice Line Information">
+                    <sheet>
+                        <group col = "4">
+                            <field name="invoice_id" />
+                            <field name="medicine_id" />
+                            <field name="description" />
+                            <field name="qty" />
+                        </group>
+                        <group col = "4">
+                            <field name="price" />
+                            <field name="total_price" />
+                            <field name="final_price" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="invoice_line_action">
+            <field name="name">Invoice Line</field>
+            <field name="res_model">aspl.invoice.line</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Invoice Line" id="invoice_line_menu" parent="invoice_menu" action="invoice_line_action"/>
+
+    </data>
+</odoo>

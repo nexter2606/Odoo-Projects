@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- visit report -->
+    <record id="visit_report_form" model="ir.ui.view">
+        <field name="name">visit.pdf.report</field>
+        <field name="model">report.clinic_management.report_visit</field>
+        <field name="arch" type="xml">
+            <form string=" Patient Visit Pdf Report">
+                <group>
+                    <field name="patient_id"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="visit_pdf_report_action" model="ir.actions.act_window">
+        <field name="name"> Visit pdf report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.clinic_management.report_visit</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="visit_report_form" />
+        <field name="target">new</field>
+    </record>
+    
+<!-- Chatter visit report -->
+    <record id="chatter_visit_report_form" model="ir.ui.view">
+        <field name="name">chatter.visit.pdf.report</field>
+        <field name="model">report.clinic_management.report_chatter</field>
+        <field name="arch" type="xml">
+            <form string="Chatter Visit Pdf Report">
+                <group>
+                    <field name="patient_id"/>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="chatter_visit_pdf_report_action" model="ir.actions.act_window">
+        <field name="name">Chatter Visit pdf report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.clinic_management.report_chatter</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="chatter_visit_report_form" />
+        <field name="target">new</field>
+    </record>
+    
+    <!-- invoice report -->
+    <record id="invoice_report_form" model="ir.ui.view">
+        <field name="name">invoice.pdf.report</field>
+        <field name="model">report.clinic_management.report_invoice</field>
+        <field name="arch" type="xml">
+            <form string=" Patient Invoice Pdf Report">
+                <group>
+                    <field name="patient_id"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="invoice_pdf_report_action" model="ir.actions.act_window">
+        <field name="name"> INvoice pdf report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.clinic_management.report_invoice</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="invoice_report_form" />
+        <field name="target">new</field>
+    </record>
+
+    <!-- Appointment report -->
+    <record id="appointment_pdf_report_form" model="ir.ui.view">
+        <field name="name">appointment.pdf.report</field>
+        <field name="model">report.clinic_management.report_appointment</field>
+        <field name="arch" type="xml">
+            <form string=" Patient Appointment Pdf Report">
+                <group>
+                    <field name="patient_id"/>
+                    <field name="doctor_id"/>
+                    <field name="reason"/>
+                    <field name="arrival_time"/>
+                    <field name="state"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="appointment_pdf_report_action" model="ir.actions.act_window">
+        <field name="name"> Appointment pdf report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">report.clinic_management.report_appointment</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="appointment_pdf_report_form" />
+        <field name="target">new</field>
+    </record>
+
+    
+
+
+
+</odoo>

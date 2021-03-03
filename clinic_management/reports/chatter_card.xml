@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="report_chatter">
+        <t t-call="web.external_layout">
+            <t t-call="web.html_container">
+                <div class="page">
+                    <table class="table table-bordered">
+                        <thead>
+                            <h1 style="text-align:center;font-weight: bold;"> Chatter Record </h1>
+                            <br/>
+                            <tr style="background-color:#1FB0BB; font-weight: bold text-align:center">
+                                <th >Display Name</th>
+                                <th >Message/Log Note</th>
+                                <th >User</th>
+                            </tr>
+                            <tbody>
+                                <tr t-foreach="chatter" t-as="docs">
+                                    <td style="background-color:#D0D3D4">
+                                        <t t-esc="display"/>
+                                    </td>
+                                    <td style="background-color:#F1948A">
+                                        <t t-esc="docs"/>
+                                    </td>
+                                    <td style="background-color:#F1C40F">
+                                        <t t-esc="user.name"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </thead>
+                    </table>
+                    <br>
+                    </br>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+

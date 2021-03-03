@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="doctor_team_tree">
+            <field name="name">doctor.team.tree</field>
+            <field name="model">doctor.team</field>
+            <field name="arch" type="xml">
+                <tree string = "Doctor Team Information">
+                    <field name="name" />
+                    <field name="doctor_ids" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="doctor_tree_form">
+            <field name="name">doctor.team.form</field>
+            <field name="model">doctor.team</field>
+            <field name="arch" type="xml">
+                <form string = "Doctor Team Information">
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                        </group>
+                        <group>
+                            <notebook>
+                                <page string="Doctor Team Details:" id="doctor_team_details_ids1">
+                                    <field name="doctor_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="mobile"/>
+                                            <field name="email"/>
+                                            <field name="country_id"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="doctor_team_action">
+            <field name="name">Doctor Team</field>
+            <field name="res_model">doctor.team</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Doctor Team" id="doctor_team_menu" parent="clinic_management_root_menu" action="doctor_team_action"/>
+    </data>
+</odoo>
